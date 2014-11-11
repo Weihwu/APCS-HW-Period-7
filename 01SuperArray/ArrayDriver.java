@@ -39,8 +39,18 @@ public class ArrayDriver{
 	L.set(2, "W");
 	System.out.println(L.size());
 	System.out.println(L);
-	L.set(21, "W");
-	L.get(21);
+	try{
+	    L.set(21, "W");
+	}
+	catch (IndexOutOfBoundsException e){
+	    System.out.println("Something went wrong.");
+	}
+	try{
+	    L.get(21);
+	}
+	catch (IndexOutOfBoundsException e){
+	    System.out.println("Something went wrong.");
+	}
 	L.add();
 	System.out.println(L.size());
 	System.out.println(L);
@@ -51,7 +61,12 @@ public class ArrayDriver{
 	L.remove(5);
 	System.out.println(L.size());
 	System.out.println(L);
-	L.remove(21);
+	try{
+	    L.remove(21);
+	}
+	catch (IndexOutOfBoundsException e){
+	    System.out.println("Something went wrong.");
+	}
 	L.clear();
 	System.out.println(L.size());
 	System.out.println(L);

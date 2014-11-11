@@ -64,7 +64,7 @@ public class SuperArray{
 		superA = superB;
 	    }
 	}else{
-	    System.out.println("This is not a valid index.");
+	    throw new IndexOutOfBoundsException();
 	}
     }
     public int size(){
@@ -95,27 +95,24 @@ public class SuperArray{
 	superA = superC;
     }
     public void clear(){
-       	for(int x = 0; x < superA.length; x++){
-	    superA[x] = null;
-	}
+	Object[] superB = new Object[superA.length];
+	superA = superB;
     }
     public Object get(int indexOf){
 	if (indexOf >= superA.length){
-	    System.out.println("This is not a valid index.");
-	    return null;
+	    throw new IndexOutOfBoundsException();
 	}else{
 	    return superA[indexOf];
 	}
     }
     public Object set(int index, Object e){
 	if (index >= superA.length){
-	    System.out.println("This is not a valid index.");
+	    throw new IndexOutOfBoundsException();
 	}else{
 	    Object holder = superA[index];
 	    superA[index] = e;
 	    return holder;
 	}
-	return null;
     }
 }
     
