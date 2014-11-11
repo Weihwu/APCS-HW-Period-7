@@ -95,8 +95,13 @@ public class SuperArray{
 	superA = superC;
     }
     public void clear(){
-	Object[] superB = new Object[superA.length];
+	if (superA.length <= 10){
+	    Object[] superB = new Object[superA.length];
+	}else{
+	    Object[] superB = new Object[10];
+	}
 	superA = superB;
+	current = 0;	   
     }
     public Object get(int indexOf){
 	if (indexOf >= superA.length){
@@ -113,7 +118,6 @@ public class SuperArray{
 	    superA[index] = e;
 	    return holder;
 	}
-	return null;
     }
 }
     
