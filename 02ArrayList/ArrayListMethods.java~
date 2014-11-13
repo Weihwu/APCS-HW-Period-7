@@ -1,6 +1,6 @@
-import java.util.ArrayList;
+import java.util.*;
 
-public class Collapse{
+public class ArrayListMethods{
     ArrayList<Integer> array;
     public void collapseDuplicates(ArrayList<Integer> L){
 	int a = L.get(0);
