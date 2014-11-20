@@ -6,6 +6,7 @@ public class WordGrid{
 	grid1.addWordHorizontal("dog", 2, 1);
 	grid1.addWordHorizontal("cow", 3, 1);
 	grid1.addWordHorizontal("pig", 2, 1);
+	grid1.addWordHorizontalBackwards("pig", 0, 1);
 	System.out.println(grid1.toString());
     }
 
@@ -60,5 +61,14 @@ public class WordGrid{
 	    place2++;
 	}
 	return true;
+    }
+
+    /** Uses the addWordHoriztontal to add a word backwards */
+    public boolean addWordHorizontalBackwards(String word, int row, int col){
+        String backward = "";
+	for(int x = word.length() - 1; x >= 0; x--){
+	    backward += word.substring(x,x+1);
+	}
+	return addWordHorizontal(backward, row, col);
     }
 }
