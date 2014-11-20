@@ -7,6 +7,13 @@ public class WordGrid{
 	grid1.addWordHorizontal("cow", 3, 1);
 	grid1.addWordHorizontal("pig", 2, 1);
 	grid1.addWordHorizontalBackwards("pig", 0, 1);
+	grid1.addWordVertical("animals", 1, 1);
+	grid1.addWordVertical("duck", 0, 1);
+	grid1.addWordVertical("copy", 0, 0);
+	grid1.addWordVertical("big", 100, 100);
+	System.out.println(grid1.toString());
+	grid1.clear();
+	grid1.addWordVerticalBackwards("big", 1, 1);
 	System.out.println(grid1.toString());
     }
 
@@ -38,16 +45,16 @@ public class WordGrid{
 	return grid;
     }
 
-    /** Checks to see the eligibility and to add the word the user wants, including in which row and column */
+    /** Checks to see the eligibility and to add the word the user wants horizontally, including in which row and column */
     public boolean addWordHorizontal(String word, int row, int col){
-	if (row >= data.length){
+	if ((row >= data.length) || (col >= data[row].length)){
 	    return false;
 	}
 	if ((data[row].length - col) < word.length()){	 
 	    return false;
 	}
 	int place1 = 0;
-	for(int i = col-1; i < word.length(); i++){
+	for(int i = col; place1 < word.length(); i++){
 	    if (data[row][i] != ' '){
 		if (data[row][i] != word.charAt(place1)){
 		    return false;
@@ -56,7 +63,7 @@ public class WordGrid{
 	    place1++;
 	}
 	int place2 = 0;
-	for(int i = col-1; i < word.length(); i++){
+	for(int i = col; place2 < word.length(); i++){
 	    data[row][i] = word.charAt(place2);	
 	    place2++;
 	}
@@ -71,4 +78,39 @@ public class WordGrid{
 	}
 	return addWordHorizontal(backward, row, col);
     }
+    
+     /** Checks to see the eligibility and to add the word the user wants vertically, including in which row and column */
+    public boolean addWordVertical(String word, int row, int col){
+	if ((row >= data.length) || (col >= data[row].length)){
+	    return false;
+	}
+	if ((data.length - row) < word.length()){	 
+	    return false;
+	}
+	int place1 = 0;
+	for(int i = row; place1 < word.length(); i++){
+	    if (data[i][col] != ' '){
+		if (data[row][i] != word.charAt(place1)){
+		    return false;
+		}
+	    }	 
+	    place1++;
+	}
+	int place2 = 0;
+	for(int i = row; place2 < word.length(); i++){
+	    data[i][col] = word.charAt(place2);	
+	    place2++;
+	}
+	return true;
+    }
+
+    /** Uses the addWordVertical to add a word backwards */
+    public boolean addWordVerticalBackwards(String word, int row, int col){
+        String backward = "";
+	for(int x = word.length() - 1; x >= 0; x--){
+	    backward += word.substring(x,x+1);
+	}
+	return addWordVertical(backward, row, col);
+    }
+    
 }
