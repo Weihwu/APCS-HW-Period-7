@@ -1,7 +1,6 @@
 public class WordGrid{	
     public static void main(String[]args){
 	WordGrid grid1 = new WordGrid(4,5);
-	grid1.clear();
       	grid1.addWordHorizontal("cat", 1, 1);
 	grid1.addWordHorizontal("dog", 2, 1);
 	grid1.addWordHorizontal("cow", 3, 1);
@@ -12,16 +11,21 @@ public class WordGrid{
 	grid1.addWordVertical("copy", 0, 0);
 	grid1.addWordVertical("big", 4, 5);
 	System.out.println(grid1.toString());
-	grid1.clear();
-	grid1.addWordVerticalBackwards("big", 1, 1);
-	System.out.println(grid1.toString());
+	WordGrid grid2 = new WordGrid(10,10);
+	grid2.addWordVerticalBackwards("big", 1, 1);
+	grid2.addWordDiagonal("animals", 2, 1);
+	grid2.addWordDiagonal("animals", 2,2);
+	grid2.addWordDiagonalBackwards("animal", 3, 2);
+	grid2.addWordVertical("milk", 5, 5);
+	System.out.println(grid2.toString());
     }
 
     private char[][]data;
     
-    /** The default constructor to set the size of the grid */
+    /** The default constructor to set the size of the grid and also clears it to set it up */
     public WordGrid(int rows, int cols){
 	data = new char[rows][cols];
+	clear();
     }
     
     /** Clears the grid, making all places an empty space */
@@ -90,7 +94,7 @@ public class WordGrid{
 	int place1 = 0;
 	for(int i = row; place1 < word.length(); i++){
 	    if (data[i][col] != ' '){
-		if (data[row][i] != word.charAt(place1)){
+		if (data[i][col] != word.charAt(place1)){
 		    return false;
 		}
 	    }	 
@@ -113,11 +117,12 @@ public class WordGrid{
 	return addWordVertical(backward, row, col);
     }
 
+     /** Checks to see the eligibility and to add the word the user wants diagonally, including in which row and column */
     public boolean addWordDiagonal(String word, int row, int col){
 	if ((row >= data.length) || (col >= data[row].length)){
 	    return false;
 	}
-	if ((2*((data[row].length - col)*(data[row].length - col))) < (word.length()*word.length())){	 
+	if ((2*((data[row].length - col)*(data[row].length - col))) < ((word.length())*(word.length()))){	 
 	    return false;
 	}
     	int place1 = 0;
@@ -139,5 +144,14 @@ public class WordGrid{
 	    row2++;
 	}
 	return true;
+    }
+
+    /** Uses the addWordDiagonal to add a word backwards */
+    public boolean addWordDiagonalBackwards(String word, int row, int col){
+	String backward = "";
+	for(int x = word.length() - 1; x >= 0; x--){
+	    backward += word.substring(x,x+1);
+	}
+	return addWordDiagonal(backward, row, col);
     }
 }
