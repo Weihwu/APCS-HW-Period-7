@@ -10,7 +10,7 @@ public class WordGrid{
 	grid1.addWordVertical("animals", 1, 1);
 	grid1.addWordVertical("duck", 0, 1);
 	grid1.addWordVertical("copy", 0, 0);
-	grid1.addWordVertical("big", 100, 100);
+	grid1.addWordVertical("big", 4, 5);
 	System.out.println(grid1.toString());
 	grid1.clear();
 	grid1.addWordVerticalBackwards("big", 1, 1);
@@ -112,5 +112,32 @@ public class WordGrid{
 	}
 	return addWordVertical(backward, row, col);
     }
-    
+
+    public boolean addWordDiagonal(String word, int row, int col){
+	if ((row >= data.length) || (col >= data[row].length)){
+	    return false;
+	}
+	if ((2*((data[row].length - col)*(data[row].length - col))) < (word.length()*word.length())){	 
+	    return false;
+	}
+    	int place1 = 0;
+	int row1 = row;
+	for(int i = col; place1 < word.length(); i++){
+	    if (data[row1][i] != ' '){
+		if (data[row1][i] != word.charAt(place1)){
+		    return false;
+		}
+	    }	 
+	    place1++;
+	    row1++;
+	}
+	int place2 = 0;					
+	int row2 = row;
+	for(int i = col; place2 < word.length(); i++){
+	    data[row2][i] = word.charAt(place2);	
+	    place2++;
+	    row2++;
+	}
+	return true;
+    }
 }
