@@ -1,23 +1,19 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
+
 public class WordGrid{	
     public static void main(String[]args){
-	WordGrid grid1 = new WordGrid(4,5);
-      	grid1.addWordHorizontal("cat", 1, 1);
-	grid1.addWordHorizontal("dog", 2, 1);
-	grid1.addWordHorizontal("cow", 3, 1);
-	grid1.addWordHorizontal("pig", 2, 1);
-	grid1.addWordHorizontalBackwards("pig", 0, 1);
-	grid1.addWordVertical("animals", 1, 1);
-	grid1.addWordVertical("duck", 0, 1);
-	grid1.addWordVertical("copy", 0, 0);
-	grid1.addWordVertical("big", 4, 5);
-	System.out.println(grid1.toString());
-	WordGrid grid2 = new WordGrid(10,10);
-	grid2.addWordVerticalBackwards("big", 1, 1);
-	grid2.addWordDiagonal("animals", 2, 1);
-	grid2.addWordDiagonal("animals", 2,2);
-	grid2.addWordDiagonalBackwards("animal", 3, 2);
-	grid2.addWordVertical("milk", 5, 5);
-	System.out.println(grid2.toString());
+	WordGrid grid1 = new WordGrid(20,20);
+	ArrayList<String> wordBank = new ArrayList<String>();
+	File words = new File("C:/Users/Wei/Java/APCS-HW-Period-7/03WordSearch/Words.txt");
+	Scanner scan = new Scanner(words);
+	int lineNumber = 1;
+	while(scan.hasNextLine()){
+	    String line = scan.nextLine();
+	    wordBank.add(line);
+	    lineNumber++;
+	}		      
     }
 
     private char[][]data;
