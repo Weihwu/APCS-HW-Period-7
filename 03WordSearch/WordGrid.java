@@ -73,19 +73,19 @@ public class WordGrid{
 		row1 += dy;
 		place1++;
 	    }
-	    int place2 = 0;
-	    int row2 = row;
-	    int col2 = col;
-	    while (place2 < word.length()){
-		data[row2][col2] = word.charAt(place2);
-		col2 += dx;
-		row2 += dy;
-		place2++;
-	    }
-	    return true;
 	}
 	catch(ArrayIndexOutOfBoundsException e){
 	    return false;
 	}
+	int place2 = 0;
+	int row2 = row;
+	int col2 = col;
+	while (place2 < word.length()){
+	    data[row2][col2] = word.charAt(place2);
+	    col2 += dx;
+	    row2 += dy;
+	    place2++;
+	}
+	return true;
     }
 }
