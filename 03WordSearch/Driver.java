@@ -21,8 +21,10 @@ public class Driver{
 		int col = r.nextInt(20);
 		int dx = (r.nextInt(3) - 1);
 		int dy = (r.nextInt(3) - 1);
-		if (grid1.add(wordBank.get(x), row, col, dx, dy)){
-		    added = true;
+		if (dx != 0 || dy != 0){
+		    if (grid1.add(wordBank.get(x), row, col, dx, dy)){
+			added = true;
+		    }
 		}
 	    }
 	}
