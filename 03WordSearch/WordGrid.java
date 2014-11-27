@@ -62,4 +62,22 @@ public class WordGrid{
 	}
 	return true;
     }
+
+    public void addManyWordsToList(ArrayList<String> wordBank, int rowSize, int colSize){
+	for(int x = 0; x < wordBank.size(); x++){
+	    boolean added = false;
+	    while (!added) {
+		Random r = new Random();
+		int row = r.nextInt(rowSize);
+		int col = r.nextInt(colSize);
+		int dx = (r.nextInt(3) - 1);
+		int dy = (r.nextInt(3) - 1);
+		if (dx != 0 || dy != 0){
+		    if (add(wordBank.get(x), row, col, dx, dy)){
+			added = true;
+		    }
+		}
+	    }
+	}
+    }	
 }
