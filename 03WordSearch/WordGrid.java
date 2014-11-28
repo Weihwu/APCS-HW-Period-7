@@ -9,7 +9,7 @@ public class WordGrid{
     private int col;
     private long seed;
     private ArrayList<String> addedWords = new ArrayList<String>();
-    Random r = new Random();
+    Random r = new Random(seed);
     
     /** The default constructor to set the size of the grid and also clears it to set it up */
     public WordGrid(int row, int col, long seed){
@@ -31,12 +31,6 @@ public class WordGrid{
     
     /** Turns the double array into a formatted string, characters separated by spaces */
     public String toString(){
-	for(int i = 0; i < data.length; i++){
-	    for(int j = 0; j < data[i].length; j++){
-		grid += " " + data[i][j];
-	    }
-	    grid += "\n";
-	}
 	return grid;
     }
 
@@ -82,10 +76,17 @@ public class WordGrid{
 	    wordBank.add(line);
 	}
 	addManyWordsToGrid(wordBank, row, col);
+	for(int i = 0; i < data.length; i++){
+	    for(int j = 0; j < data[i].length; j++){
+		grid +=  data[i][j] + " ";
+	    }
+	    grid = grid.substring(0, grid.length()-3);
+	    grid += "\n";
+	}
 	if (fillRandomLetters){
 	    for(int x = 0; x < grid.length(); x++){
 		if (grid.charAt(x) == ' '){
-		    grid = grid.substring(0,x) + (char)((r.nextInt((int)(seed%26)+97))) + grid.substring(x+1);
+		    grid = grid.substring(0,x) + (char)((r.nextInt(26))+97) + grid.substring(x+1);
 		}
 	    }
 	}
@@ -94,7 +95,8 @@ public class WordGrid{
     public void addManyWordsToGrid(ArrayList<String> wordBank, int rowSize, int colSize){
 	for(int x = 0; x < wordBank.size(); x++){
 	    boolean added = false;
-	    while (!added) {
+	    int count = 0;
+	    while ((!added) && (count < 5)) {
 		int row = r.nextInt(rowSize);
 		int col = r.nextInt(colSize);
 		int dx = (r.nextInt(3) - 1);
@@ -102,8 +104,10 @@ public class WordGrid{
 		if (dx != 0 || dy != 0){
 		    if (add(wordBank.get(x), row, col, dx, dy)){
 			added = true;
+			count = 0;
 		    }
 		}
+		count++;
 	    }
 	}
     }
