@@ -4,10 +4,19 @@ import java.util.*;
 
 public class WordGrid{	
     private char[][]data;
+    private String grid = "";
+    private int row;
+    private int col;
+    private long seed;
+    private ArrayList<String> addedWords = new ArrayList<String>();
+    Random r = new Random();
     
     /** The default constructor to set the size of the grid and also clears it to set it up */
-    public WordGrid(int rows, int cols){
-	data = new char[rows][cols];
+    public WordGrid(int row, int col, long seed){
+	this.row = row;
+	this.col = col;
+	this.seed = seed; 
+	data = new char[row][col];
 	clear();
     }
     
@@ -22,7 +31,6 @@ public class WordGrid{
     
     /** Turns the double array into a formatted string, characters separated by spaces */
     public String toString(){
-	String grid = "";
 	for(int i = 0; i < data.length; i++){
 	    for(int j = 0; j < data[i].length; j++){
 		grid += " " + data[i][j];
@@ -60,14 +68,33 @@ public class WordGrid{
 	    row2 += dy;
 	    place2++;
 	}
+	addedWords.add(word);
 	return true;
     }
 
-    public void addManyWordsToList(ArrayList<String> wordBank, int rowSize, int colSize){
+    public void loadWordsFromFile(String fileName, boolean fillRandomLetters) throws FileNotFoundException{
+	ArrayList<String> wordBank = new ArrayList<String>();
+	String path = "./" + fileName;
+	File words = new File(path);
+	Scanner scan = new Scanner(words);
+	while(scan.hasNextLine()){
+	    String line = scan.nextLine();
+	    wordBank.add(line);
+	}
+	addManyWordsToGrid(wordBank, row, col);
+	if (fillRandomLetters){
+	    for(int x = 0; x < grid.length(); x++){
+		if (grid.charAt(x) == ' '){
+		    grid = grid.substring(0,x) + (char)((r.nextInt((int)(seed%26)+97))) + grid.substring(x+1);
+		}
+	    }
+	}
+    }
+    
+    public void addManyWordsToGrid(ArrayList<String> wordBank, int rowSize, int colSize){
 	for(int x = 0; x < wordBank.size(); x++){
 	    boolean added = false;
 	    while (!added) {
-		Random r = new Random();
 		int row = r.nextInt(rowSize);
 		int col = r.nextInt(colSize);
 		int dx = (r.nextInt(3) - 1);
@@ -79,5 +106,28 @@ public class WordGrid{
 		}
 	    }
 	}
-    }	
+    }
+
+    public String wordsInPuzzle(){
+	String options = "";
+	int i = 0;
+	while(i < addedWords.size()){
+	    int j = 0;
+	    try{
+		while (j < 4){
+		    options += addedWords.get(i) + " ";
+		    j++;
+		    i++;
+		}
+		options += "\n";
+	    }
+	    catch (IndexOutOfBoundsException e){
+	    }
+	}
+	return options;
+    }
+
+    public void setSeed(long seed){
+	this.seed = seed;
+    }
 }
