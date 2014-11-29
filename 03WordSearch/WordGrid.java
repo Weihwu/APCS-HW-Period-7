@@ -9,13 +9,14 @@ public class WordGrid{
     private int col;
     private long seed;
     private ArrayList<String> addedWords = new ArrayList<String>();
-    Random r = new Random(seed);
+    Random r;
     
     /** The default constructor to set the size of the grid and also clears it to set it up */
     public WordGrid(int row, int col, long seed){
 	this.row = row;
 	this.col = col;
 	this.seed = seed; 
+	r = new Random(seed);
 	data = new char[row][col];
 	clear();
     }
@@ -133,5 +134,6 @@ public class WordGrid{
 
     public void setSeed(long seed){
 	this.seed = seed;
+	r = new Random(seed);
     }
 }
