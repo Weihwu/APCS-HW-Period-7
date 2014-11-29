@@ -11,7 +11,7 @@ public class WordGrid{
     private ArrayList<String> addedWords = new ArrayList<String>();
     Random r;
     
-    /** The default constructor to set the size of the grid and also clears it to set it up */
+    /** The default constructor to set the size of the grid, the seed, and also clears it to set it up */
     public WordGrid(int row, int col, long seed){
 	this.row = row;
 	this.col = col;
@@ -30,7 +30,7 @@ public class WordGrid{
 	}
     }
     
-    /** Turns the double array into a formatted string, characters separated by spaces */
+    /** Returns the formatted String grid made in loadWordsFromFile to be printed */
     public String toString(){
 	return grid;
     }
@@ -67,6 +67,7 @@ public class WordGrid{
 	return true;
     }
 
+    /** Retrieves the words from the specified file, and then adds any eligible words onto the grid. If the user wishes to fill the grid with random letters, then the grid will be filled according to the values of the seed. If not, the answers are given. */
     public void loadWordsFromFile(String fileName, boolean fillRandomLetters) throws FileNotFoundException{
 	ArrayList<String> wordBank = new ArrayList<String>();
 	String path = "./" + fileName;
@@ -77,22 +78,33 @@ public class WordGrid{
 	    wordBank.add(line);
 	}
 	addManyWordsToGrid(wordBank, row, col);
+	if (fillRandomLetters){
+	    for(int i = 0; i < data.length; i++){
+		for(int j = 0; j < data[i].length; j++){
+		    if (data[i][j] == ' '){
+			data[i][j] = (char)(r.nextInt(26)+97);
+		    }
+		}
+	    }
+	}else{
+	    for(int i = 0; i < data.length; i++){
+		for(int j = 0; j < data[i].length; j++){
+		    if (data[i][j] == ' '){
+			data[i][j] = '_';
+		    }
+		}
+	    }
+	}
 	for(int i = 0; i < data.length; i++){
 	    for(int j = 0; j < data[i].length; j++){
 		grid +=  data[i][j] + " ";
 	    }
-	    grid = grid.substring(0, grid.length()-3);
+	    grid = grid.substring(0, grid.length() - 1);
 	    grid += "\n";
-	}
-	if (fillRandomLetters){
-	    for(int x = 0; x < grid.length(); x++){
-		if (grid.charAt(x) == ' '){
-		    grid = grid.substring(0,x) + (char)((r.nextInt(26))+97) + grid.substring(x+1);
-		}
-	    }
 	}
     }
     
+    /** Helper function to help loadWordsFromFile by adding the words to the grid. Tries to add every word five times before stopping to move onto the next. */
     public void addManyWordsToGrid(ArrayList<String> wordBank, int rowSize, int colSize){
 	for(int x = 0; x < wordBank.size(); x++){
 	    boolean added = false;
@@ -113,6 +125,7 @@ public class WordGrid{
 	}
     }
 
+    /** Puts the options (the words that have been added) into a string for the user. */
     public String wordsInPuzzle(){
 	String options = "";
 	int i = 0;
@@ -132,6 +145,7 @@ public class WordGrid{
 	return options;
     }
 
+    /** Allows the programmer to manually set the seed. */
     public void setSeed(long seed){
 	this.seed = seed;
 	r = new Random(seed);
