@@ -1,5 +1,5 @@
 public class SuperArray{
-    private Object[] superA;
+    private String[] superA;
     private int current;
 
     public SuperArray(){
