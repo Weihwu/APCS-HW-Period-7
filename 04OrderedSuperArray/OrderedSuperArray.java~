@@ -1,11 +1,24 @@
-public OrderedSuperArray extends SuperArray{
-    
+public class OrderedSuperArray extends SuperArray{
     public void add(String e){
 	int index = 0;
-	for(int x; x < superA.length; x++){
-	    if (((x.charAt(0)).compareTo(superA[x].charAt(0))) == 1){
+	int place = 0;
+	for(int x = 0; x < size(); x++){
+	    if (e.compareTo(get(x)) == 1){
 		add(index, e);
+	    }else if(e.compareTo(get(x)) == 0){
+		place++;
+		index = 0;
 	    }
 	    index++;
 	}
     }
+    public void add(int index, String o){
+	add(o);
+    }
+    public String set(int index, String e){
+	String holder  = get(index);
+	remove(index);
+	add(e);
+	return holder;
+    }
+}

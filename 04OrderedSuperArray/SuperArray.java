@@ -21,7 +21,7 @@ public class SuperArray{
 	resize(superA.length+1);
     }
     public void add(String e){
-	if (superA[superA.length-1].equals("")){
+	if (size() < superA.length){
 	    String[] superB = new String[superA.length];
 	    superB = superA;
 	    superB[current] = e;
@@ -33,7 +33,7 @@ public class SuperArray{
 	}
     }
     public void add(int index, String o){
-	if (superA[superA.length-1] == null){
+	if (size() < superA.length){
 	    String[] superB = new String[superA.length];
 	    for (int x = 0; x < index; x++){
 		superB[x] = superA[x];
@@ -71,7 +71,7 @@ public class SuperArray{
 	int sizeA = 0;
 	if (superA.length <= 10){
 	    for (int x = 0; x < superA.length; x++){
-		if (superA[x].equals("")){
+		if (superA[x] == null){
 		    break;
 		}
 		sizeA++;

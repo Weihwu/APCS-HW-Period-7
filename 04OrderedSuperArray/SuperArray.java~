@@ -1,12 +1,12 @@
 public class SuperArray{
-    private Object[] superA;
+    private String[] superA;
     private int current;
 
     public SuperArray(){
-	superA = new Object[10];
+	superA = new String[10];
     }    
     public SuperArray(int size){
-	superA = new Object[size];
+	superA = new String[size];
     }
 
     public String toString(){
@@ -20,9 +20,9 @@ public class SuperArray{
     public void add(){
 	resize(superA.length+1);
     }
-    public void add(Object e){
-	if (superA[superA.length-1] == null){
-	    Object[] superB = new Object[superA.length];
+    public void add(String e){
+	if (superA[superA.length-1].equals("")){
+	    String[] superB = new String[superA.length];
 	    superB = superA;
 	    superB[current] = e;
 	    superA = superB;
@@ -32,9 +32,9 @@ public class SuperArray{
 	    add(e);
 	}
     }
-    public void add(int index, Object o){
+    public void add(int index, String o){
 	if (superA[superA.length-1] == null){
-	    Object[] superB = new Object[superA.length];
+	    String[] superB = new String[superA.length];
 	    for (int x = 0; x < index; x++){
 		superB[x] = superA[x];
 	    }
@@ -51,10 +51,10 @@ public class SuperArray{
     public void remove(int index){
 	if (index < superA.length){
 	    if (superA.length <= 10){
-		Object holder = superA[index];
+		String holder = superA[index];
 		superA[index] = null;
 	    }else{
-		Object[] superB = new Object[superA.length-1];
+		String[] superB = new String[superA.length-1];
 		for (int x = 0; x < index; x++){
 		    superB[x] = superA[x];
 		}
@@ -71,7 +71,7 @@ public class SuperArray{
 	int sizeA = 0;
 	if (superA.length <= 10){
 	    for (int x = 0; x < superA.length; x++){
-		if (superA[x] == null){
+		if (superA[x].equals("")){
 		    break;
 		}
 		sizeA++;
@@ -82,7 +82,7 @@ public class SuperArray{
 	return sizeA++;
     }
     public void resize(int newCapacity){
-	Object[] superC = new Object[newCapacity];
+	String[] superC = new String[newCapacity];
 	if (superA.length <= newCapacity){
 	    for(int x = 0; x < superA.length; x++){
 		superC[x] = superA[x];
@@ -95,27 +95,27 @@ public class SuperArray{
 	superA = superC;
     }
     public void clear(){
-	Object[] superB;
+	String[] superB;
 	if (superA.length <= 10){
-	    superB = new Object[superA.length];
+	    superB = new String[superA.length];
 	}else{
-	    superB = new Object[10];
+	    superB = new String[10];
 	}
 	superA = superB;
 	current = 0;	   
     }
-    public Object get(int indexOf){
+    public String get(int indexOf){
 	if (indexOf >= superA.length){
 	    throw new IndexOutOfBoundsException();
 	}else{
 	    return superA[indexOf];
 	}
     }
-    public Object set(int index, Object e){
+    public String set(int index, String e){
 	if (index >= superA.length){
 	    throw new IndexOutOfBoundsException();
 	}else{
-	    Object holder = superA[index];
+	    String holder = superA[index];
 	    superA[index] = e;
 	    return holder;
 	}
