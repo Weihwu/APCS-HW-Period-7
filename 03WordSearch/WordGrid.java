@@ -133,7 +133,10 @@ public class WordGrid{
 	    int j = 0;
 	    try{
 		while (j < 4){
-		    options += addedWords.get(i) + " ";
+		    options += addedWords.get(i);
+		    for (int x = 0; x < 13 - (addedWords.get(i)).length(); x++){
+			options += " ";
+		    }
 		    j++;
 		    i++;
 		}

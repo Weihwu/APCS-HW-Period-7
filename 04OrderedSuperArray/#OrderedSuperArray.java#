@@ -6,7 +6,7 @@ public class OrderedSuperArray extends SuperArray{
 	for(int x; x < superA.length; x++){
 	    if (((x.charAt(place)).compareTo(superA[x].charAt(place))) == 1){
 		add(index, e);
-	    }else if((((x.charAt(place)).compareTo(superA[x].charAt(place))) == 0)){
+	    }else if(((x.charAt(place)).compareTo(superA[x].charAt(place))) == 0){
 		place++;
 		index = 0;
 	    }
