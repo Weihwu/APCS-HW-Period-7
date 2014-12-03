@@ -87,13 +87,29 @@ public class SuperArray{
 	    return holder;
 	}
     }
+
+    /** This is your DOCUMENT Mr.K. The test is in the driver. */
     public void insertionSort(){
+
+	/** For loop to scroll through the elements of the list to be sorted */
 	for(int x = 0; x < current; x++){
+
+	    /** Variable place to save the location of the element being examined at a specific moment */
 	    int place = x;
+
+	    /** The while loop skips the first element, since it is already sorted. From the place of the suspect element, the while loop goes down the list, back down to 0, and switches the elements, 2 at a time, to be in the correct order. */
 	    while (place > 0 && superA[place].compareTo(superA[place-1]) < 0 ){
+
+		/** A temporary String variable to hold the element to be replaced. */
 		String holder = superA[place-1];
+
+		/** The element in the higher location number is placed into the location one before it. */
 		superA[place-1] = superA[place];
+
+		/** From the temporary variable we had before, the replaced element is remembered and placed into the higher location number. */
 		superA[place] = holder;
+
+		/** The suspect element location is moved down a spot to see if the next two elements are in the correct place. */
 		place--;
 	    }
 	}

@@ -12,7 +12,9 @@ public class OrderedSuperArray extends SuperArray{
 	}
 	super.add(e);
     }
-
+    public void add(int index, String e){
+	add(e);
+    }
     public String set(int index, String e){
 	String holder  = get(index);
 	remove(index);
