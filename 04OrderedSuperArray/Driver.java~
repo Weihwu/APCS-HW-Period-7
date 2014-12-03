@@ -1,8 +1,0 @@
-public class Driver{
-     public static void main(String[]args){
-	 SuperArray L = {"a","b","c","d","e","f","g","h","i","j","k"};
-	 L.add("w");
-	 L.add("i");
-	 System.out.println(L);
-     }
-}

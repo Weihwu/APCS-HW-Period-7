@@ -1,20 +1,25 @@
 public class OrderedSuperArray extends SuperArray{
+    private String[] superA;
+
+    public OrderedSuperArray(){
+	superA = new String[10];
+    }    
+    public OrderedSuperArray(int size){
+	superA = new String[size];
+    }
+
     public void add(String e){
-	int index = 0;
-	int place = 0;
-	for(int x = 0; x < size(); x++){
-	    if (e.compareTo(get(x)) == 1){
-		add(index, e);
-	    }else if(e.compareTo(get(x)) == 0){
-		place++;
-		index = 0;
+	if (size() == 0){
+	    super.add(e);
+	}else{
+	    for(int x = 0; x < size(); x++){
+		if(get(x).compareTo(e) > 0 && get(x+1).compareTo(e) < 0){
+		    super.add(x, e);
+		}
 	    }
-	    index++;
 	}
     }
-    public void add(int index, String o){
-	add(o);
-    }
+
     public String set(int index, String e){
 	String holder  = get(index);
 	remove(index);

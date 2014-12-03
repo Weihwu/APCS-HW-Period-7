@@ -1,14 +1,19 @@
 public class OrderedSuperArray extends SuperArray{
+    public OrderedSuperArray(){
+	super();
+    }
 
     public void add(String e){
 	if (size() == 0){
 	    super.add(e);
 	}else{
 	    for(int x = 0; x < size(); x++){
-		if(get(x).compareTo(e) > 0 && get(x+1).compareTo(e) < 0){
+		if(get(x).compareTo(e) == 1){
 		    super.add(x, e);
-		}
+		    return;
+		}  
 	    }
+	    super.add(e);
 	}
     }
 

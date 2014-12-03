@@ -1,12 +1,13 @@
 public class SuperArray{
     private String[] superA;
-    private int current;
+    int current;
 
     public SuperArray(){
-	superA = new String[10];
+	this(10);
     }    
-    public SuperArray(int size){
+    public SuperArray(int size){	
 	superA = new String[size];
+	current = 0;
     }
 
     public String toString(){
@@ -17,102 +18,68 @@ public class SuperArray{
 	str += " ]";
 	return str;
     }
-    public void add(){
-	resize(superA.length+1);
-    }
     public void add(String e){
-	if (superA[superA.length-1].equals("")){
-	    String[] superB = new String[superA.length];
-	    superB = superA;
-	    superB[current] = e;
-	    superA = superB;
-	    current++;
-	}else{
-	    add();
-	    add(e);
+	if(size() == superA.length){
+	    resize(current*2);
 	}
+	superA[current] = e;
+	current++;
     }
-    public void add(int index, String o){
-	if (superA[superA.length-1] == null){
-	    String[] superB = new String[superA.length];
-	    for (int x = 0; x < index; x++){
-		superB[x] = superA[x];
-	    }
-	    superB[index] = o;
-	    for (int x = index + 1; x < superB.length; x++){
-		superB[x] = superA[x];
-	    }
-	    superA = superB;
-	}else{
-	    add();
-	    add(index,o);
-	}
-    }
-    public void remove(int index){
-	if (index < superA.length){
-	    if (superA.length <= 10){
-		String holder = superA[index];
-		superA[index] = null;
-	    }else{
-		String[] superB = new String[superA.length-1];
-		for (int x = 0; x < index; x++){
-		    superB[x] = superA[x];
-		}
-		for (int x = index; x < superB.length; x++){
-		    superB[x] = superA[x+1];
-		}
-		superA = superB;
-	    }
-	}else{
+    public void add(int index, String e){
+	if (index < 0
+	    || index > size()){
 	    throw new IndexOutOfBoundsException();
 	}
+	if(size() == superA.length){
+	    resize(current * 2);
+	}
+	for(int x = superA.length - 1; x > index; x--){
+	    superA[x] = superA[x-1];
+	}
+	superA[index] = e;
+	current++;
+    }
+    public String remove(int index){
+	if (index < 0
+	    || index > size()){
+	    throw new IndexOutOfBoundsException();
+	}
+	String holder = superA[index];
+	while(index < size()-1){
+	    superA[index] = superA[index + 1];
+	    index++;
+	}
+	current--;
+	if(current < superA.length/4){
+	    resize(superA.length/2);
+	}
+	return holder;
     }
     public int size(){
-	int sizeA = 0;
-	if (superA.length <= 10){
-	    for (int x = 0; x < superA.length; x++){
-		if (superA[x].equals("")){
-		    break;
-		}
-		sizeA++;
-	    }
-	}else{
-	    return superA.length;
-	}
-	return sizeA++;
+	return current;
     }
     public void resize(int newCapacity){
-	String[] superC = new String[newCapacity];
-	if (superA.length <= newCapacity){
-	    for(int x = 0; x < superA.length; x++){
-		superC[x] = superA[x];
-	    }
-	}else{
-	     for(int x = 0; x < newCapacity; x++){
-		 superC[x] = superA[x];
-	     }
-	}
-	superA = superC;
-    }
-    public void clear(){
-	String[] superB;
-	if (superA.length <= 10){
-	    superB = new String[superA.length];
-	}else{
-	    superB = new String[10];
+	String[] superB = new String[newCapacity];
+	int max = Math.min(newCapacity, current);
+	for(int x = 0; x < max; x++){
+	    superB[x] = superA[x];
 	}
 	superA = superB;
+    }
+    public void clear(){
 	current = 0;	   
     }
-    public String get(int indexOf){
-	if (indexOf >= superA.length){
+    public String get(int index){
+	if (index < 0
+	    || index > size()){
 	    throw new IndexOutOfBoundsException();
 	}else{
-	    return superA[indexOf];
+	    return superA[index];
 	}
     }
     public String set(int index, String e){
-	if (index >= superA.length){
+	if (index < 0
+	    || index > size()){
 	    throw new IndexOutOfBoundsException();
 	}else{
 	    String holder = superA[index];
