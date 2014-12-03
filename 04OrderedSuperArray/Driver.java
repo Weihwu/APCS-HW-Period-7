@@ -22,6 +22,8 @@ public class Driver{
 
 	 /** testing insertionSort() */
 	 System.out.println("Testing insertionSort():");
+
+	 /** First made an array of unordered Strings */
 	 L = new SuperArray();
 	 L.add("d");
 	 L.add("e");
@@ -38,8 +40,12 @@ public class Driver{
 	 L.add("b");
 	 System.out.println(L);
 
-	 System.out.println("Sorting the array...");
+	 /** Apply insertionSort to sort the array, as well as timing it */
+	 long startTime = System.nanoTime();
 	 L.insertionSort();
+	 long endTime = System.nanoTime();
+	 System.out.println("Sorting the array...");
+	 System.out.println((endTime - startTime) + " nanoseconds");
 	 System.out.println(L);
      }
 }
