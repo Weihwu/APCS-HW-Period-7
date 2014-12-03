@@ -87,5 +87,16 @@ public class SuperArray{
 	    return holder;
 	}
     }
+    public void insertionSort(){
+	for(int x = 0; x < current; x++){
+	    int place = x;
+	    while (place > 0 && superA[place].compareTo(superA[place-1]) < 0 ){
+		String holder = superA[place-1];
+		superA[place-1] = superA[place];
+		superA[place] = holder;
+		place--;
+	    }
+	}
+    }
 }
     

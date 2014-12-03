@@ -1,0 +1,39 @@
+public class Driver{
+     public static void main(String[]args){
+	 SuperArray L = new OrderedSuperArray();
+	 L.add("b");
+	 L.add("c");
+	 L.add("d");
+	 L.add("f");
+	 L.add("g");
+	 L.add("h");
+	 L.add("i");
+	 L.add("j");
+	 L.add("k");
+	 L.add("w");
+	 L.add("i");
+	 L.add("a");
+	 L.add("e");
+	 System.out.println(L);
+
+	 SuperArray M = new SuperArray();
+	 M.add("d");
+	 M.add("e");
+	 M.add("i");
+	 M.add("f");
+	 M.add("a");
+	 M.add("g");
+	 M.add("h");
+	 M.add("c");
+	 M.add("j");
+	 M.add("k");
+	 M.add("w");
+	 M.add("i");
+	 M.add("b");
+	 System.out.println(M);
+
+	 System.out.println("Sorting the array...");
+	 L.insertionSort();
+	 System.out.println(M);
+     }
+}

@@ -4,17 +4,13 @@ public class OrderedSuperArray extends SuperArray{
     }
 
     public void add(String e){
-	if (size() == 0){
-	    super.add(e);
-	}else{
-	    for(int x = 0; x < size(); x++){
-		if(get(x).compareTo(e) == 1){
-		    super.add(x, e);
-		    return;
-		}  
-	    }
-	    super.add(e);
+	for(int x = 0; x < size(); x++){
+	    if(get(x).compareTo(e) > 0){
+		super.add(x, e);
+		return;
+	    }  
 	}
+	super.add(e);
     }
 
     public String set(int index, String e){
@@ -24,3 +20,5 @@ public class OrderedSuperArray extends SuperArray{
 	return holder;
     }
 }
+
+
