@@ -69,7 +69,7 @@ public class SuperArray{
     public void clear(){
 	current = 0;	   
     }
-    public Object get(int index){
+    public int get(int index){
 	if (index < 0
 	    || index > size()){
 	    throw new IndexOutOfBoundsException();
@@ -86,14 +86,6 @@ public class SuperArray{
 	    superA[index] = e;
 	    return holder;
 	}
-    }
-    public Object find(Object e){
-	for(int x = 0; x < superA.length; x++){
-	    if(e.equals(superA[x])){
-		return x;
-	    }
-	}
-	return null;
     }
 }
 

@@ -16,7 +16,7 @@ public class ArrayDriver{
 	L.add(a2);
 	L.add(a3);
 	L.add(a4);
-	L.add(a5);	
+	L.add(a5);
 	L.add(a6);
 	System.out.println(L.size());
 	System.out.println(L);
@@ -27,48 +27,7 @@ public class ArrayDriver{
 	System.out.println(L.size());
 	System.out.println(L);
 	L.add(a11);
-	System.out.println(L.size());
 	System.out.println(L);
-	L.resize(16);
-	System.out.println(L.size());
-	System.out.println(L);
-	L.resize(7);
-	System.out.println(L.size());
-	System.out.println(L);
-	System.out.println(L.get(3));
-	L.set(2, "W");
-	System.out.println(L.size());
-	System.out.println(L);
-	try{
-	    L.set(21, "W");
-	}
-	catch (IndexOutOfBoundsException e){
-	    System.out.println("Something went wrong.");
-	}
-	try{
-	    L.get(21);
-	}
-	catch (IndexOutOfBoundsException e){
-	    System.out.println("Something went wrong.");
-	}
-	L.add();
-	System.out.println(L.size());
-	System.out.println(L);
-	L.remove(4);
-	System.out.println(L.size());
-	System.out.println(L);
-	L.resize(16);
-	L.remove(5);
-	System.out.println(L.size());
-	System.out.println(L);
-	try{
-	    L.remove(21);
-	}
-	catch (IndexOutOfBoundsException e){
-	    System.out.println("Something went wrong.");
-	}
-	L.clear();
-	System.out.println(L.size());
-	System.out.println(L);
+	System.out.println(L.find(5));
     }
 }
