@@ -117,15 +117,32 @@ public class SuperArray{
     public int find(String e){
 	if ((e.compareTo(superA[superA.length/2])) == 0){
 	    for(int x = (superA.length/2)-1; x >= 0; x--){
-		if(!(e.compareTo(x))){
+		if(!(e.equals(superA[x]))){
 		    return x+1;
 		}
 	    }
 	}else if((e.compareTo(superA[superA.length/2])) > 1){
 	    String[] superB = new String[superA.length/2];
 	    int superBPlace = 0;
-	    int superAPlace
-	    
-	
+	    int superAPlace = superA.length/2;
+	    while(superBPlace < superA.length/2){
+		superB[superBPlace] = superA[superAPlace];
+		superBPlace++;
+		superAPlace++;
+		superA = superB;
+	    }
+	}else if((e.compareTo(superA[superA.length/2])) < 1){
+	    String[] superB = new String[superA.length/2];
+	    int superBPlace = 0;
+	    int superAPlace = 0;
+	    while(superBPlace < superA.length/2){
+		superB[superBPlace] = superA[superAPlace];
+		superBPlace++;
+		superAPlace++;
+		superA = superB;
+	    }
+	}
+	return find(e);
+    }
 }
     
