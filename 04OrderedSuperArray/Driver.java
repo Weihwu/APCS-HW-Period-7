@@ -47,5 +47,7 @@ public class Driver{
 	 System.out.println("Sorting the array...");
 	 System.out.println((endTime - startTime) + " nanoseconds");
 	 System.out.println(L);
+
+	 System.out.println(L.find("g"));
      }
 }

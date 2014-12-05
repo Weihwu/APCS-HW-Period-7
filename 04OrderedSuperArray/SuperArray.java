@@ -115,34 +115,25 @@ public class SuperArray{
 	}
     }
     public int find(String e){
-	if ((e.compareTo(superA[superA.length/2])) == 0){
-	    for(int x = (superA.length/2)-1; x >= 0; x--){
-		if(!(e.equals(superA[x]))){
-		    return x+1;
-		}
-	    }
-	}else if((e.compareTo(superA[superA.length/2])) > 1){
-	    String[] superB = new String[superA.length/2];
-	    int superBPlace = 0;
-	    int superAPlace = superA.length/2;
-	    while(superBPlace < superA.length/2){
-		superB[superBPlace] = superA[superAPlace];
-		superBPlace++;
-		superAPlace++;
-		superA = superB;
-	    }
-	}else if((e.compareTo(superA[superA.length/2])) < 1){
-	    String[] superB = new String[superA.length/2];
-	    int superBPlace = 0;
-	    int superAPlace = 0;
-	    while(superBPlace < superA.length/2){
-		superB[superBPlace] = superA[superAPlace];
-		superBPlace++;
-		superAPlace++;
-		superA = superB;
+	int first = 0;
+	int last = superA.length-1;
+	int middle = (first + last)/2;
+	while(first <= last){
+	    if(superA[middle].compareTo(e) > 0){
+		first = middle + 1;
+	    }else if(superA[middle].compareTo(e) == 0){
+		for(int x = middle - 1; x >= 0; x--){
+		    if(!(e.equals(superA[x]))){
+			return x + 1;
+		    }
+		} 
+		break;
+	    }else{
+		last = middle - 1;
+		middle = (first + last)/2;
 	    }
 	}
-	return find(e);
+	return -1;
     }
 }
     
