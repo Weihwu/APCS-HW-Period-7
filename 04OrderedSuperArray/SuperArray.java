@@ -119,7 +119,7 @@ public class SuperArray{
 	int last = superA.length-1;
 	int middle = (first + last)/2;
 	while(first <= last){
-	    if(superA[middle].compareTo(e) > 0){
+	    if(superA[middle].compareTo(e) < 0){
 		first = middle + 1;
 	    }else if(superA[middle].compareTo(e) == 0){
 		for(int x = middle - 1; x >= 0; x--){
@@ -130,8 +130,8 @@ public class SuperArray{
 		break;
 	    }else{
 		last = middle - 1;
-		middle = (first + last)/2;
 	    }
+	    middle = (first + last)/2;
 	}
 	return -1;
     }
