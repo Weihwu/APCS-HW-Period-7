@@ -153,7 +153,7 @@ public class SuperArray{
 	}
     }
     public void sort2(){
-	Arrays.sort(superA);
+	Arrays.sort(superA, 0, size());
     }
 }
     
