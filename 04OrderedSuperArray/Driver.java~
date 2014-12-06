@@ -1,39 +1,53 @@
 public class Driver{
      public static void main(String[]args){
+	 /** testing OrderedSuperArray */
+	 System.out.println("Testing OrderedSuperArray:");
 	 SuperArray L = new OrderedSuperArray();
-	 L.add("b");
-	 L.add("c");
+	 System.out.println(L);
 	 L.add("d");
+	 L.add("e");
+	 L.add("i");
 	 L.add("f");
+	 L.add("a");
 	 L.add("g");
 	 L.add("h");
-	 L.add("i");
+	 L.add("c");
 	 L.add("j");
 	 L.add("k");
 	 L.add("w");
 	 L.add("i");
-	 L.add("a");
+	 L.add("b");
+	 System.out.println(L);
+	 System.out.println();
+
+	 /** testing insertionSort() */
+	 System.out.println("Testing insertionSort():");
+
+	 /** First made an array of unordered Strings */
+	 L = new SuperArray();
+	 L.add("d");
 	 L.add("e");
+	 L.add("i");
+	 L.add("f");
+	 L.add("a");
+	 L.add("g");
+	 L.add("h");
+	 L.add("c");
+	 L.add("j");
+	 L.add("k");
+	 L.add("w");
+	 L.add("i");
+	 L.add("b");
 	 System.out.println(L);
 
-	 SuperArray M = new SuperArray();
-	 M.add("d");
-	 M.add("e");
-	 M.add("i");
-	 M.add("f");
-	 M.add("a");
-	 M.add("g");
-	 M.add("h");
-	 M.add("c");
-	 M.add("j");
-	 M.add("k");
-	 M.add("w");
-	 M.add("i");
-	 M.add("b");
-	 System.out.println(M);
-
-	 System.out.println("Sorting the array...");
+	 /** Apply insertionSort to sort the array, as well as timing it */
+	 long startTime = System.nanoTime();
 	 L.insertionSort();
-	 System.out.println(M);
+	 long endTime = System.nanoTime();
+	 System.out.println("Sorting the array...");
+	 System.out.println((endTime - startTime) + " nanoseconds");
+	 System.out.println(L);
+
+	 System.out.println(L.find("g"));
      }
 }

@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class SuperArray{
     private String[] superA;
     private int current;
@@ -134,6 +136,24 @@ public class SuperArray{
 	    middle = (first + last)/2;
 	}
 	return -1;
+    }
+    public void selectionSort(){
+	for(int i = 0; i < current; i++){
+	    String min = superA[i];
+	    int target = i;
+	    for(int j = i; j < current; j++){
+		if(min.compareTo(superA[j]) >= 0){
+		    min = superA[j];
+		    target = j;
+		}
+	    }
+	    String temp = superA[i];
+	    superA[i] = min;
+	    superA[target] = temp;
+	}
+    }
+    public void sort2(){
+	Arrays.sort(superA);
     }
 }
     
