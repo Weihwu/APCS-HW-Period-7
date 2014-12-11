@@ -1,0 +1,41 @@
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
+
+public class TempConverter extends JFrame implements ActionListener{
+    private Container pane;
+    private JLabel instructions;
+    private JTextField number;
+    private JCheckBox CtoF;
+    private JCheckBox FtoC;
+    private JButton start;
+    
+    public TempConverter(){
+	this.setTitle("Temperature Converter");
+	this.setSize(600,100);
+	this.setLocation(100,100);
+	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	
+	pane = this.getContentPane();
+	pane.setLayout(new FlowLayout());
+
+	instructions = new JLabel("Put a number in the space below for conversion.");
+	number = new JTextField(13);
+	CtoF = new JCheckBox("Celsius to Fahrenheit");
+	FtoC = new JCheckBox("Fahrenheit to Celsius");
+	start = new JButton("Convert");
+
+	pane.add(instructions);
+	pane.add(number);
+	pane.add(CtoF);
+	pane.add(FtoC);
+	pane.add(start);	
+    }
+
+    public void actionPerformed(ActionEvent e){
+    }
+
+    public static boid main(String[] args){
+	TempConverter g = new TempConverter();
+	g.setVisible(true);
+    }
