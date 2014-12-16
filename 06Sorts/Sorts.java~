@@ -1,0 +1,41 @@
+public class Sorts{
+    public static void bubbleSort(int[] c){
+	place = c.length;
+	for(int x = 0; x < place; x++){
+	    if(c[x] > c[x+1]){
+		int holder = c[x];
+		c[x] = c[x+1];
+		c[x+1] = holder;
+	    }
+	    place--;
+	}
+    }
+
+    public void insertionSort(int[] c){
+	for(int x = 0; x < current; x++){
+	    int place = x;
+	    while (place > 0 && c[place].compareTo(c[place-1]) < 0 ){
+		int holder = c[place-1];
+		c[place-1] = c[place];
+		c[place] = holder;
+		place--;
+	    }
+	}
+    }
+
+    public void selectionSort(int[] c){
+	for(int i = 0; i < current; i++){
+	    int min = superA[i];
+	    int target = i;
+	    for(int j = i; j < current; j++){
+		if(min.compareTo(superA[j]) >= 0){
+		    min = superA[j];
+		    target = j;
+		}
+	    }
+	    int temp = superA[i];
+	    superA[i] = min;
+	    superA[target] = temp;
+	}
+    }
+}
