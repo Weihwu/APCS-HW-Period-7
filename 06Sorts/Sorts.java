@@ -17,6 +17,11 @@ public class Sorts{
 	    target3[x] = target1[x];
 	}
 
+	int[] target4 = new int[50000];
+	for(int x = 0; x < 50000; x++){
+	    target4[x] = target1[x];
+	}
+
 	System.out.println("Insertion Sort:");
 	long startTime = System.nanoTime();
 	insertionSort(target1);
@@ -32,6 +37,12 @@ public class Sorts{
 	System.out.println("Bubble Sort:");
 	startTime = System.nanoTime();
 	bubbleSort(target3);
+	endTime = System.nanoTime();
+	System.out.println((endTime - startTime) + " nanoseconds");
+
+	System.out.println("Regular Sort:");
+	startTime = System.nanoTime();
+	Arrays.sort(target3, 0, target3.length);
 	endTime = System.nanoTime();
 	System.out.println((endTime - startTime) + " nanoseconds");
     }
