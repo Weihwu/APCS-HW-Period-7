@@ -53,14 +53,14 @@ public class Sorts{
     }
 
     public static void bubbleSort(int[] c){
-	int place = c.length;
-	for(int x = 0; x < place; x++){
-	    if(c[x] > c[x+1]){
-		int holder = c[x];
-		c[x] = c[x+1];
-		c[x+1] = holder;
+	for(int i = 0; i < c.length; i++){
+	    for(int j = 0; j < c.length - 1; j++){
+		if ([j] > c[j+1]){
+		    c[j] = c[j] + c[j+1];
+		    c[j + 1] = c[j] - c[j+1];
+		    c[j] = c[j] - c[j+1];
+		}
 	    }
-	    place--;
 	}
     }
 
